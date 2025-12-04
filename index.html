@@ -17,6 +17,17 @@
             background: linear-gradient(135deg, #1a0a0a 0%, #2d1414 50%, #1a0a0a 100%);
             color: #fff;
             line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Main Page */
+        .main-page {
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        .main-page.fade-out {
+            opacity: 0;
         }
 
         .container {
@@ -50,25 +61,6 @@
             border-radius: 25px;
             font-weight: bold;
             font-size: 1rem;
-        }
-
-        .admin-link {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: linear-gradient(45deg, #ff0844, #ff6b9d);
-            padding: 12px 25px;
-            border-radius: 50px;
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
-            box-shadow: 0 5px 20px rgba(255, 8, 68, 0.5);
-            transition: all 0.3s ease;
-            z-index: 999;
-        }
-
-        .admin-link:hover {
-            transform: scale(1.1);
         }
 
         .header-section {
@@ -187,230 +179,317 @@
             box-shadow: 0 8px 30px rgba(255, 8, 68, 0.6);
         }
 
-        .subscribe-btn.subscribed {
-            background: linear-gradient(45deg, #46d369, #2ecc71);
-        }
-
-        .modal {
+        /* Success Page */
+        .success-page {
             display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
+            opacity: 0;
+            min-height: 100vh;
+            padding: 20px;
         }
 
-        .modal-content {
-            background: linear-gradient(145deg, #2a1010 0%, #3d1515 100%);
-            margin: 10% auto;
-            padding: 40px;
-            border: 3px solid #ff0844;
-            border-radius: 25px;
-            width: 90%;
-            max-width: 500px;
-            text-align: center;
-            animation: slideIn 0.5s ease;
+        .success-page.show {
+            display: block;
+            animation: fadeIn 0.8s ease forwards;
         }
 
-        @keyframes slideIn {
+        @keyframes fadeIn {
             from {
-                transform: translateY(-50px);
                 opacity: 0;
+                transform: translateY(30px);
             }
             to {
-                transform: translateY(0);
                 opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        .success-icon {
-            font-size: 5rem;
-            margin-bottom: 20px;
-            animation: bounce 0.6s ease;
+        .success-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
         }
 
-        @keyframes bounce {
-            0%, 100% {
-                transform: scale(1);
+        .success-icon-big {
+            font-size: 8rem;
+            margin: 40px 0 30px;
+            animation: bounceIn 0.8s ease;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0);
             }
             50% {
                 transform: scale(1.2);
             }
+            100% {
+                transform: scale(1);
+            }
         }
 
-        .modal-content h2 {
-            font-size: 2rem;
+        .success-title {
+            font-size: 3rem;
             margin-bottom: 20px;
+            background: linear-gradient(45deg, #ff0844, #ffb199);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: slideDown 0.6s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .congrats-message {
+            font-size: 1.3rem;
+            color: #ffb199;
+            margin-bottom: 50px;
+            animation: slideDown 0.8s ease;
+        }
+
+        .date-details {
+            background: linear-gradient(145deg, #2a1010 0%, #3d1515 100%);
+            border: 3px solid #ff0844;
+            border-radius: 25px;
+            padding: 40px;
+            margin: 40px 0;
+            animation: slideUp 1s ease;
+            box-shadow: 0 20px 60px rgba(255, 8, 68, 0.5);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .date-details h2 {
+            font-size: 2.2rem;
             color: #ff6b9d;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
         }
 
-        .modal-content p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #e0e0e0;
-            margin-bottom: 15px;
+        .detail-item {
+            background: rgba(255, 8, 68, 0.15);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #ff0844;
+            text-align: left;
         }
 
-        .congrats-box {
+        .detail-icon {
+            font-size: 2rem;
+            margin-right: 15px;
+            display: inline-block;
+        }
+
+        .detail-label {
+            font-size: 1rem;
+            color: #ffb199;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .detail-value {
+            font-size: 1.4rem;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .special-note {
             background: rgba(255, 8, 68, 0.2);
             padding: 25px;
             border-radius: 15px;
-            margin: 25px 0;
-            border: 2px solid rgba(255, 8, 68, 0.5);
+            margin-top: 40px;
+            border: 2px dashed #ff6b9d;
         }
 
-        .congrats-box h3 {
+        .special-note h3 {
             color: #ff6b9d;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             margin-bottom: 15px;
         }
 
-        .love-message {
-            font-size: 1rem;
+        .special-note p {
             color: #ffb199;
-            font-style: italic;
-            margin: 15px 0;
-        }
-
-        .close-btn {
-            background: linear-gradient(45deg, #ff0844, #ff6b9d);
-            color: white;
-            padding: 15px 40px;
-            border: none;
-            border-radius: 10px;
             font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .close-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 30px rgba(255, 8, 68, 0.6);
+            line-height: 1.8;
+            font-style: italic;
         }
 
         @media (max-width: 768px) {
-            .header-section h1 {
+            .success-title {
                 font-size: 2rem;
             }
-            .plans-container {
-                grid-template-columns: 1fr;
+            .success-icon-big {
+                font-size: 5rem;
             }
-            .logo {
-                font-size: 2rem;
+            .date-details {
+                padding: 25px;
+            }
+            .date-details h2 {
+                font-size: 1.6rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo">ميم❤️ميم</div>
-            <div class="anniversary-badge">🎉 December 5th Anniversary 🎉</div>
-        </header>
+    <!-- Main Page -->
+    <div class="main-page" id="mainPage">
+        <div class="container">
+            <header>
+                <div class="logo">ميم❤️ميم</div>
+                <div class="anniversary-badge">🎉 December 5th, Our Anniversary 🎉</div>
+            </header>
 
-        <main>
-            <div class="header-section">
-                <h1>Renew Our Love Subscription 💕</h1>
-                <p class="subtitle">Choose Your Commitment Level for Another Amazing Year!</p>
-            </div>
-
-            <div class="plans-container">
-                <div class="plan-card">
-                    <div class="plan-header">
-                        <h3>Sweet Love</h3>
-                        <p class="plan-tagline">"The foundation of us"</p>
-                    </div>
-                    <div class="plan-price">
-                        <span class="price">∞</span>
-                        <span class="period"> kisses/day</span>
-                    </div>
-                    <ul class="plan-features">
-                        <li class="feature">💕 Daily good morning & goodnight texts</li>
-                        <li class="feature">🤗 Unlimited hugs on demand</li>
-                        <li class="feature">☕ Coffee dates every weekend</li>
-                        <li class="feature">😊 Genuine smiles guaranteed</li>
-                        <li class="feature">🎵 Shared playlists & inside jokes</li>
-                    </ul>
-                    <button class="subscribe-btn" onclick="subscribePlan(this, 'Sweet Love')">Choose This Plan</button>
+            <main>
+                <div class="header-section">
+                    <h1>Renew Our Love Subscription 💕</h1>
+                    <p class="subtitle">Choose Your Commitment Level for Another Amazing Year!</p>
                 </div>
 
-                <div class="plan-card popular">
-                    <div class="popular-badge">⭐ OUR FAVORITE ⭐</div>
-                    <div class="plan-header">
-                        <h3>Forever Love</h3>
-                        <p class="plan-tagline">"The one we've been living"</p>
+                <div class="plans-container">
+                    <div class="plan-card">
+                        <div class="plan-header">
+                            <h3>Sweet Love</h3>
+                            <p class="plan-tagline">"The foundation of us"</p>
+                        </div>
+                        <div class="plan-price">
+                            <span class="price">∞</span>
+                            <span class="period"> kisses/day</span>
+                        </div>
+                        <ul class="plan-features">
+                            <li class="feature">💕 Daily good morning & goodnight texts</li>
+                            <li class="feature">🤗 Unlimited hugs on demand</li>
+                            <li class="feature">☕ Coffee dates every weekend</li>
+                            <li class="feature">😊 Genuine smiles guaranteed</li>
+                            <li class="feature">🎵 Shared playlists & inside jokes</li>
+                        </ul>
+                        <button class="subscribe-btn" onclick="subscribePlan('Sweet Love')">Choose This Plan</button>
                     </div>
-                    <div class="plan-price">
-                        <span class="price">∞²</span>
-                        <span class="period"> memories/lifetime</span>
-                    </div>
-                    <ul class="plan-features">
-                        <li class="feature">💖 Everything from Sweet Love +</li>
-                        <li class="feature">🌍 Adventures & travel together</li>
-                        <li class="feature">🏠 Building our future plans</li>
-                        <li class="feature">💑 Deep conversations at 2 AM</li>
-                        <li class="feature">🎁 Surprise dates & thoughtful gifts</li>
-                        <li class="feature">🤝 Partners in everything</li>
-                    </ul>
-                    <button class="subscribe-btn" onclick="subscribePlan(this, 'Forever Love')">Choose This Plan</button>
-                </div>
 
-                <div class="plan-card">
-                    <div class="plan-header">
-                        <h3>Eternal Love</h3>
-                        <p class="plan-tagline">"Till the end of time"</p>
+                    <div class="plan-card popular">
+                        <div class="popular-badge">⭐ OUR FAVORITE ⭐</div>
+                        <div class="plan-header">
+                            <h3>Forever Love</h3>
+                            <p class="plan-tagline">"The one we've been living"</p>
+                        </div>
+                        <div class="plan-price">
+                            <span class="price">∞²</span>
+                            <span class="period"> memories/lifetime</span>
+                        </div>
+                        <ul class="plan-features">
+                            <li class="feature">💖 Everything from Sweet Love +</li>
+                            <li class="feature">🌍 Adventures & travel together</li>
+                            <li class="feature">🏠 Building our future plans</li>
+                            <li class="feature">💑 Deep conversations at 2 AM</li>
+                            <li class="feature">🎁 Surprise dates & thoughtful gifts</li>
+                            <li class="feature">🤝 Partners in everything</li>
+                        </ul>
+                        <button class="subscribe-btn" onclick="subscribePlan('Forever Love')">Choose This Plan</button>
                     </div>
-                    <div class="plan-price">
-                        <span class="price">∞³</span>
-                        <span class="period"> love/forever</span>
+
+                    <div class="plan-card">
+                        <div class="plan-header">
+                            <h3>Eternal Love</h3>
+                            <p class="plan-tagline">"Till the end of time"</p>
+                        </div>
+                        <div class="plan-price">
+                            <span class="price">∞³</span>
+                            <span class="period"> love/forever</span>
+                        </div>
+                        <ul class="plan-features">
+                            <li class="feature">💝 Everything from Forever Love ++</li>
+                            <li class="feature">💍 Growing old together (coming soon)</li>
+                            <li class="feature">👨‍👩‍👧‍👦 Building a family (future feature)</li>
+                            <li class="feature">🌟 Being each other's forever person</li>
+                            <li class="feature">💫 Unconditional love & support</li>
+                            <li class="feature">🔐 Soul connection - unbreakable bond</li>
+                        </ul>
+                        <button class="subscribe-btn" onclick="subscribePlan('Eternal Love')">Choose This Plan</button>
                     </div>
-                    <ul class="plan-features">
-                        <li class="feature">💝 Everything from Forever Love ++</li>
-                        <li class="feature">💍 Growing old together (coming soon)</li>
-                        <li class="feature">👨‍👩‍👧‍👦 Building a family (future feature)</li>
-                        <li class="feature">🌟 Being each other's forever person</li>
-                        <li class="feature">💫 Unconditional love & support</li>
-                        <li class="feature">🔐 Soul connection - unbreakable bond</li>
-                    </ul>
-                    <button class="subscribe-btn" onclick="subscribePlan(this, 'Eternal Love')">Choose This Plan</button>
                 </div>
-            </div>
-        </main>
+            </main>
+        </div>
     </div>
 
-    <!-- Admin Link (انت بس اللي هتشوفه) -->
-    <a href="admin.html" class="admin-link">📊 Admin</a>
+    <!-- Success Page -->
+    <div class="success-page" id="successPage">
+        <div class="success-container">
+            <div class="success-icon-big">✅💖</div>
+            <h1 class="success-title">Subscription Renewed Successfully!</h1>
+            <p class="congrats-message">Congratulations! You've renewed our love for another amazing year! 🎉</p>
 
-    <!-- Modal -->
-    <div id="subscriptionModal" class="modal">
-        <div class="modal-content">
-            <div class="success-icon">✅💖</div>
-            <h2>Subscription Renewed Successfully! 🎉</h2>
-            <p id="planMessage" style="font-size: 1.3rem; font-weight: bold;">You've chosen the Forever Love plan!</p>
-            
-            <div class="congrats-box">
-                <h3>🎊 Congratulations! 🎊</h3>
-                <p>Our love subscription has been renewed for another amazing year!</p>
-                <p class="love-message">
-                    "Every moment with you is a blessing. Here's to more adventures, laughs, and memories together. I love you more every single day! 💕"
-                </p>
+            <div class="date-details">
+                <h2>📅 Your Special Date Details</h2>
+
+                <div class="detail-item">
+                    <span class="detail-icon">📆</span>
+                    <div style="display: inline-block; vertical-align: top;">
+                        <div class="detail-label">Date</div>
+                        <div class="detail-value">Sunday, December 7th, 2025</div>
+                    </div>
+                </div>
+
+                <div class="detail-item">
+                    <span class="detail-icon">🕓</span>
+                    <div style="display: inline-block; vertical-align: top;">
+                        <div class="detail-label">Time</div>
+                        <div class="detail-value">4:00 PM Sharp</div>
+                    </div>
+                </div>
+
+                <div class="detail-item">
+                    <span class="detail-icon">🚗</span>
+                    <div style="display: inline-block; vertical-align: top;">
+                        <div class="detail-label">Pick-up</div>
+                        <div class="detail-value">The car will be waiting for you at your place</div>
+                    </div>
+                </div>
+
+                <div class="detail-item">
+                    <span class="detail-icon">👗</span>
+                    <div style="display: inline-block; vertical-align: top;">
+                        <div class="detail-label">Dress Code</div>
+                        <div class="detail-value">Look stunning (but you always do! 😍)</div>
+                    </div>
+                </div>
+
+                <div class="special-note">
+                    <h3>💕 Special Message For You</h3>
+                    <p>
+                        Get ready for an unforgettable evening! I've planned something special to celebrate our love and this incredible journey we're on together. 
+                        Can't wait to see your beautiful smile! ❤️
+                    </p>
+                    <p style="margin-top: 15px;">
+                        See you soon, my love! 💖
+                    </p>
+                </div>
             </div>
-            
-            <p style="margin-top: 20px; font-size: 1.2rem; color: #ff6b9d;">
-                Get ready for the best year yet! 🚀❤️
-            </p>
-            
-            <button class="close-btn" onclick="closeModal()">Perfect! Let's Celebrate! 🎊</button>
         </div>
     </div>
 
     <script>
-        function subscribePlan(button, planName) {
-            // Get current date and time
+        function subscribePlan(planName) {
+            // Save subscription data
             const now = new Date();
             const dateTime = now.toLocaleString('ar-EG', { 
                 year: 'numeric', 
@@ -421,41 +500,29 @@
                 hour12: true
             });
             
-            // Save to localStorage
             const subscription = {
                 plan: planName,
                 date: dateTime,
                 timestamp: now.getTime()
             };
             
-            // Get existing subscriptions
             let subscriptions = JSON.parse(localStorage.getItem('loveSubscriptions') || '[]');
             subscriptions.push(subscription);
             localStorage.setItem('loveSubscriptions', JSON.stringify(subscriptions));
             
-            // Change button
-            button.textContent = '✓ Subscribed!';
-            button.classList.add('subscribed');
-            button.disabled = true;
+            // Smooth transition
+            const mainPage = document.getElementById('mainPage');
+            const successPage = document.getElementById('successPage');
             
-            // Update modal message
-            document.getElementById('planMessage').textContent = `You've chosen the ${planName} plan!`;
+            // Fade out main page
+            mainPage.classList.add('fade-out');
             
-            // Show modal
-            setTimeout(function() {
-                document.getElementById('subscriptionModal').style.display = 'block';
-            }, 300);
-        }
-        
-        function closeModal() {
-            document.getElementById('subscriptionModal').style.display = 'none';
-        }
-        
-        window.onclick = function(event) {
-            const modal = document.getElementById('subscriptionModal');
-            if (event.target == modal) {
-                modal.style.display = 'none';
-            }
+            // After fade out, show success page
+            setTimeout(() => {
+                mainPage.style.display = 'none';
+                successPage.classList.add('show');
+                window.scrollTo(0, 0);
+            }, 500);
         }
     </script>
 </body>
