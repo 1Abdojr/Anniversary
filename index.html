@@ -17,17 +17,20 @@
             background: linear-gradient(135deg, #1a0a0a 0%, #2d1414 50%, #1a0a0a 100%);
             color: #fff;
             line-height: 1.6;
-            overflow-x: hidden;
         }
 
-        /* Main Page */
-        .main-page {
-            opacity: 1;
-            transition: opacity 0.5s ease;
+        .page {
+            display: none;
         }
 
-        .main-page.fade-out {
-            opacity: 0;
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .container {
@@ -80,7 +83,6 @@
         .subtitle {
             font-size: 1.2rem;
             color: #ffb199;
-            margin-bottom: 20px;
         }
 
         .plans-container {
@@ -179,34 +181,155 @@
             box-shadow: 0 8px 30px rgba(255, 8, 68, 0.6);
         }
 
-        /* Success Page */
-        .success-page {
+        .payment-container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .payment-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .payment-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #ff0844, #ffb199);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .payment-subtitle {
+            color: #ffb199;
+            font-size: 1.1rem;
+        }
+
+        .progress-container {
+            margin-bottom: 40px;
+        }
+
+        .progress-text {
+            color: #ffb199;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .progress-bar {
+            background: rgba(255, 255, 255, 0.1);
+            height: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(45deg, #ff0844, #ff6b9d);
+            height: 100%;
+            width: 20%;
+            transition: width 0.5s ease;
+        }
+
+        .question-card {
+            background: linear-gradient(145deg, #2a1010 0%, #3d1515 100%);
+            border: 2px solid rgba(255, 8, 68, 0.3);
+            border-radius: 20px;
+            padding: 35px;
+        }
+
+        .question-number {
+            color: #ff6b9d;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .question-text {
+            font-size: 1.6rem;
+            color: #fff;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .answer-option {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 18px 20px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .answer-option:hover {
+            background: rgba(255, 8, 68, 0.15);
+            border-color: #ff0844;
+            transform: translateX(10px);
+        }
+
+        .answer-option.selected {
+            background: rgba(255, 8, 68, 0.3);
+            border-color: #ff0844;
+        }
+
+        .answer-option.correct {
+            background: rgba(70, 211, 105, 0.3);
+            border-color: #46d369;
+        }
+
+        .answer-option.wrong {
+            background: rgba(255, 0, 0, 0.3);
+            border-color: #ff0000;
+        }
+
+        .next-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(45deg, #ff0844, #ff6b9d);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            margin-top: 25px;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .next-btn.enabled {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .next-btn.enabled:hover {
+            transform: scale(1.05);
+        }
+
+        .error-message {
+            background: rgba(255, 0, 0, 0.2);
+            border: 2px solid #ff0000;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: center;
+            color: #ffb199;
             display: none;
-            opacity: 0;
-            min-height: 100vh;
-            padding: 20px;
         }
 
-        .success-page.show {
+        .error-message.show {
             display: block;
-            animation: fadeIn 0.8s ease forwards;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .success-container {
             max-width: 900px;
             margin: 0 auto;
             text-align: center;
+            padding: 40px 20px;
         }
 
         .success-icon-big {
@@ -216,15 +339,9 @@
         }
 
         @keyframes bounceIn {
-            0% {
-                transform: scale(0);
-            }
-            50% {
-                transform: scale(1.2);
-            }
-            100% {
-                transform: scale(1);
-            }
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
         }
 
         .success-title {
@@ -233,25 +350,12 @@
             background: linear-gradient(45deg, #ff0844, #ffb199);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: slideDown 0.6s ease;
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .congrats-message {
             font-size: 1.3rem;
             color: #ffb199;
             margin-bottom: 50px;
-            animation: slideDown 0.8s ease;
         }
 
         .date-details {
@@ -260,29 +364,13 @@
             border-radius: 25px;
             padding: 40px;
             margin: 40px 0;
-            animation: slideUp 1s ease;
             box-shadow: 0 20px 60px rgba(255, 8, 68, 0.5);
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .date-details h2 {
             font-size: 2.2rem;
             color: #ff6b9d;
             margin-bottom: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
         }
 
         .detail-item {
@@ -297,7 +385,6 @@
         .detail-icon {
             font-size: 2rem;
             margin-right: 15px;
-            display: inline-block;
         }
 
         .detail-label {
@@ -305,7 +392,6 @@
             color: #ffb199;
             margin-bottom: 8px;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         .detail-value {
@@ -336,36 +422,34 @@
         }
 
         @media (max-width: 768px) {
-            .success-title {
+            .header-section h1, .payment-header h1, .success-title {
                 font-size: 2rem;
+            }
+            .question-text {
+                font-size: 1.3rem;
+            }
+            .plans-container {
+                grid-template-columns: 1fr;
             }
             .success-icon-big {
                 font-size: 5rem;
-            }
-            .date-details {
-                padding: 25px;
-            }
-            .date-details h2 {
-                font-size: 1.6rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Main Page -->
-    <div class="main-page" id="mainPage">
+    <!-- Page 1: Plans -->
+    <div class="page active" id="plansPage">
         <div class="container">
             <header>
                 <div class="logo">ميم❤️ميم</div>
-                <div class="anniversary-badge">🎉 December 5th, Our Anniversary 🎉</div>
+                <div class="anniversary-badge">🎉 December 5th,    Our 1st Anniversary 🎉</div>
             </header>
-
             <main>
                 <div class="header-section">
                     <h1>Renew Our Love Subscription 💕</h1>
                     <p class="subtitle">Choose Your Commitment Level for Another Amazing Year!</p>
                 </div>
-
                 <div class="plans-container">
                     <div class="plan-card">
                         <div class="plan-header">
@@ -380,12 +464,9 @@
                             <li class="feature">💕 Daily good morning & goodnight texts</li>
                             <li class="feature">🤗 Unlimited hugs on demand</li>
                             <li class="feature">☕ Coffee dates every weekend</li>
-                            <li class="feature">😊 Genuine smiles guaranteed</li>
-                            <li class="feature">🎵 Shared playlists & inside jokes</li>
                         </ul>
-                        <button class="subscribe-btn" onclick="subscribePlan('Sweet Love')">Choose This Plan</button>
+                        <button class="subscribe-btn" onclick="selectPlan('Sweet Love')">Choose This Plan</button>
                     </div>
-
                     <div class="plan-card popular">
                         <div class="popular-badge">⭐ OUR FAVORITE ⭐</div>
                         <div class="plan-header">
@@ -400,13 +481,9 @@
                             <li class="feature">💖 Everything from Sweet Love +</li>
                             <li class="feature">🌍 Adventures & travel together</li>
                             <li class="feature">🏠 Building our future plans</li>
-                            <li class="feature">💑 Deep conversations at 2 AM</li>
-                            <li class="feature">🎁 Surprise dates & thoughtful gifts</li>
-                            <li class="feature">🤝 Partners in everything</li>
                         </ul>
-                        <button class="subscribe-btn" onclick="subscribePlan('Forever Love')">Choose This Plan</button>
+                        <button class="subscribe-btn" onclick="selectPlan('Forever Love')">Choose This Plan</button>
                     </div>
-
                     <div class="plan-card">
                         <div class="plan-header">
                             <h3>Eternal Love</h3>
@@ -418,29 +495,47 @@
                         </div>
                         <ul class="plan-features">
                             <li class="feature">💝 Everything from Forever Love ++</li>
-                            <li class="feature">💍 Growing old together (coming soon)</li>
-                            <li class="feature">👨‍👩‍👧‍👦 Building a family (future feature)</li>
+                            <li class="feature">💍 Growing old together</li>
                             <li class="feature">🌟 Being each other's forever person</li>
-                            <li class="feature">💫 Unconditional love & support</li>
-                            <li class="feature">🔐 Soul connection - unbreakable bond</li>
                         </ul>
-                        <button class="subscribe-btn" onclick="subscribePlan('Eternal Love')">Choose This Plan</button>
+                        <button class="subscribe-btn" onclick="selectPlan('Eternal Love')">Choose This Plan</button>
                     </div>
                 </div>
             </main>
         </div>
     </div>
 
-    <!-- Success Page -->
-    <div class="success-page" id="successPage">
+    <!-- Page 2: Payment (Questions) -->
+    <div class="page" id="paymentPage">
+        <div class="payment-container">
+            <div class="payment-header">
+                <h1>💳 Verify Your Love Payment</h1>
+                <p class="payment-subtitle">Answer these questions to confirm your subscription 💕</p>
+            </div>
+            <div class="progress-container">
+                <p class="progress-text">Question <span id="currentQuestion">1</span> of 5</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+            <div class="question-card">
+                <div class="question-number" id="questionNumber">Question 1</div>
+                <div class="question-text" id="questionText"></div>
+                <div id="answersContainer"></div>
+                <button class="next-btn" id="nextBtn" onclick="nextQuestion()">Next Question →</button>
+                <div class="error-message" id="errorMessage">❌ Oops! Try again! 💕</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 3: Success -->
+    <div class="page" id="successPage">
         <div class="success-container">
             <div class="success-icon-big">✅💖</div>
             <h1 class="success-title">Subscription Renewed Successfully!</h1>
-            <p class="congrats-message">Congratulations! You've renewed our love for another amazing year! 🎉</p>
-
+            <p class="congrats-message">Congratulations! You've renewed our love! 🎉</p>
             <div class="date-details">
                 <h2>📅 Your Special Date Details</h2>
-
                 <div class="detail-item">
                     <span class="detail-icon">📆</span>
                     <div style="display: inline-block; vertical-align: top;">
@@ -448,7 +543,6 @@
                         <div class="detail-value">Sunday, December 7th, 2025</div>
                     </div>
                 </div>
-
                 <div class="detail-item">
                     <span class="detail-icon">🕓</span>
                     <div style="display: inline-block; vertical-align: top;">
@@ -456,15 +550,13 @@
                         <div class="detail-value">4:00 PM Sharp</div>
                     </div>
                 </div>
-
                 <div class="detail-item">
                     <span class="detail-icon">🚗</span>
                     <div style="display: inline-block; vertical-align: top;">
                         <div class="detail-label">Pick-up</div>
-                        <div class="detail-value">The car will be waiting for you at your place</div>
+                        <div class="detail-value">Infront of you home, will be waiting for you!</div>
                     </div>
                 </div>
-
                 <div class="detail-item">
                     <span class="detail-icon">👗</span>
                     <div style="display: inline-block; vertical-align: top;">
@@ -472,57 +564,161 @@
                         <div class="detail-value">Look stunning (but you always do! 😍)</div>
                     </div>
                 </div>
-
                 <div class="special-note">
                     <h3>💕 Special Message For You</h3>
-                    <p>
-                        Get ready for an unforgettable evening! I've planned something special to celebrate our love and this incredible journey we're on together. 
-                        Can't wait to see your beautiful smile! ❤️
-                    </p>
-                    <p style="margin-top: 15px;">
-                        See you soon, my love! 💖
-                    </p>
+                    <p>Get ready for an unforgettable evening! I've planned something special to celebrate our love. Can't wait to see your beautiful smile! ❤️</p>
+                    <p style="margin-top: 15px;">See you soon, my love! 💖</p>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        function subscribePlan(planName) {
-            // Save subscription data
-            const now = new Date();
-            const dateTime = now.toLocaleString('ar-EG', { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric',
-                hour: '2-digit', 
-                minute: '2-digit',
-                hour12: true
+        // Questions Array - غير الأسئلة دي حسب علاقتكم
+        const questions = [
+            {
+                question: "What was the first movie we watched together? 🎬",
+                answers: ["سيكو سيكو", "فينوم", "الحريفة", "هيبتا2"],
+                correct: 1 // Index الإجابة الصحيحة (0 = أول إجابة، 1 = تاني إجابة، إلخ)
+            },
+            {
+                question: "Where was the  first time i told you that i love you? 💕",
+                answers: ["في طريق pick up", "في الايل",  "في حفلة بابلو", "في اركان"],
+                correct: 0
+            },
+            {
+                question: "What's our Secret word? 😉",
+                answers: ["Koshary", "Zzz", "Maaa", "Btats"],
+                correct: 3
+            },
+            {
+                question: "What was the first gift I gave you? 🎁",
+                answers: [ "Necklace","bracelet", "ring", "Chocolate"],
+                correct: 1
+            },
+            {
+                question: "Last question,   What song reminds you of us? 🎵",
+                answers: ["Karma - Pablo.Abyu", "Khatafony - Amr Diab", "Kalamntina - Saint Levant", "Habiobi leeh - Tul8ate"],
+                correct: 0
+            },
+            {
+                question: "معلش اخر سؤال بقي Who's the best football player in the world? 🎵",
+                answers: ["Maya Moharam❤️", "Ronaldo", "Messi🤮", "Salah"],
+                correct: 0
+            },
+            {
+                question: "اخر سؤال والمرادي بجد بقي والله Who's the best football player in the history",
+                answers: ["Cristiano", "Ronaldo", "Cristiano Ronaldo", "Maya"],
+                correct: 3
+            },
+
+            
+        ];
+
+        let currentQuestionIndex = 0;
+        let selectedAnswer = null;
+        let selectedPlan = '';
+
+        // Select Plan
+        function selectPlan(planName) {
+            selectedPlan = planName;
+            showPage('paymentPage');
+            loadQuestion();
+        }
+
+        // Load Question
+        function loadQuestion() {
+            const question = questions[currentQuestionIndex];
+            
+            document.getElementById('questionNumber').textContent = `Question ${currentQuestionIndex + 1}`;
+            document.getElementById('currentQuestion').textContent = currentQuestionIndex + 1;
+            document.getElementById('questionText').textContent = question.question;
+            
+            // Update progress bar
+            const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            
+            // Load answers
+            const answersContainer = document.getElementById('answersContainer');
+            answersContainer.innerHTML = '';
+            
+            question.answers.forEach((answer, index) => {
+                const answerDiv = document.createElement('div');
+                answerDiv.className = 'answer-option';
+                answerDiv.textContent = answer;
+                answerDiv.onclick = () => selectAnswer(index, answerDiv);
+                answersContainer.appendChild(answerDiv);
             });
             
+            // Reset button
+            document.getElementById('nextBtn').classList.remove('enabled');
+            document.getElementById('errorMessage').classList.remove('show');
+            selectedAnswer = null;
+        }
+
+        // Select Answer
+        function selectAnswer(index, element) {
+            // Remove previous selection
+            document.querySelectorAll('.answer-option').forEach(el => {
+                el.classList.remove('selected', 'correct', 'wrong');
+            });
+            
+            selectedAnswer = index;
+            element.classList.add('selected');
+            
+            // Check if correct
+            const question = questions[currentQuestionIndex];
+            if (index === question.correct) {
+                element.classList.add('correct');
+                document.getElementById('nextBtn').classList.add('enabled');
+                document.getElementById('errorMessage').classList.remove('show');
+            } else {
+                element.classList.add('wrong');
+                document.getElementById('errorMessage').classList.add('show');
+                document.getElementById('nextBtn').classList.remove('enabled');
+            }
+        }
+
+        // Next Question
+        function nextQuestion() {
+            if (selectedAnswer !== questions[currentQuestionIndex].correct) {
+                return;
+            }
+            
+            currentQuestionIndex++;
+            
+            if (currentQuestionIndex < questions.length) {
+                loadQuestion();
+            } else {
+                // All questions answered - Go to success page
+                setTimeout(() => {
+                    showPage('successPage');
+                    saveSubscription();
+                }, 500);
+            }
+        }
+
+        // Show Page
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        // Save Subscription
+        function saveSubscription() {
+            const now = new Date();
             const subscription = {
-                plan: planName,
-                date: dateTime,
+                plan: selectedPlan,
+                date: now.toLocaleString(),
                 timestamp: now.getTime()
             };
             
             let subscriptions = JSON.parse(localStorage.getItem('loveSubscriptions') || '[]');
             subscriptions.push(subscription);
             localStorage.setItem('loveSubscriptions', JSON.stringify(subscriptions));
-            
-            // Smooth transition
-            const mainPage = document.getElementById('mainPage');
-            const successPage = document.getElementById('successPage');
-            
-            // Fade out main page
-            mainPage.classList.add('fade-out');
-            
-            // After fade out, show success page
-            setTimeout(() => {
-                mainPage.style.display = 'none';
-                successPage.classList.add('show');
-                window.scrollTo(0, 0);
-            }, 500);
         }
     </script>
 </body>
